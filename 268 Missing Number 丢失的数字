@@ -1,0 +1,19 @@
+268 Missing Number 丢失的数字
+
+Given an array containing n distinct numbers taken from 0, 1, 2, ..., n, find the one that is missing from the array.
+For example,
+Given nums = [0, 1, 3] return 2.
+
+Follow up: Could you implement a solution using only O(1) extra space complexity and O(n) runtime complexity?
+
+   这道题给我们n个数字，是0到n之间的数但是有一个数字去掉了，让我们寻找这个数字，要求线性的时间复杂度和常数级的空间复杂度。那么最直观的一个方法是用等差数列的求和公式求出0到n之间所有的数字之和，然后再遍历数组算出给定数字的累积和，然后做减法，差值就是丢失的那个数字，参见代码如下
+
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        sum_nums = 0
+        for i in nums:
+          sum_nums += i
+        length = len(sum_nums)
+        mis = (0+length)*(length+1)/2-sum_nums
+        return int(mis)
+
